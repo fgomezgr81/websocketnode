@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket=io.connect();
+       
+        socket.on('send',function(datos){
+            alert(datos.nombre);
+        });
+
+        function Login(){
+            socket.emit('datos_usuario',
+            {name:$('#name').val(),
+            correo:$('#email').val()}
+            );
+        }
+    </script>
+   
+</head>
+<body>
+  <h3>Ingresar</h3>
+    <form style="padding: 10px;border:solid 2px black; ">
+      <input type="text" name="name" id="name">
+      <input type="email" name="email" id="email">
+      <button type="button" onclick="Login()" name="login">Login</button>
+  </form>
+  <hr>
+
+</body>
+</html>
